@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lasana Diarra - E5 | Portfolio SISR</title>
+    <title>Lasana Diarra - E6 | Portfolio SISR</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .e5-pdf-grid {
+        .e6-pdf-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
             gap: 1.5rem;
         }
-        .e5-pdf-card {
+        .e6-pdf-card {
             background: rgba(10, 14, 39, 0.8);
             border: 1px solid rgba(0, 217, 255, 0.2);
             border-radius: 8px;
             overflow: hidden;
             transition: border-color 0.3s;
         }
-        .e5-pdf-card:hover {
+        .e6-pdf-card:hover {
             border-color: var(--primary);
         }
-        .e5-pdf-card h3 {
+        .e6-pdf-card h3 {
             color: var(--primary);
             font-size: 0.95rem;
             font-family: 'Fira Code', monospace;
@@ -32,14 +32,14 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        .e5-pdf-wrap {
+        .e6-pdf-wrap {
             position: relative;
             width: 100%;
             height: 420px;
             background: #1a1d2e;
         }
-        .e5-pdf-wrap iframe,
-        .e5-pdf-wrap embed {
+        .e6-pdf-wrap iframe,
+        .e6-pdf-wrap embed {
             width: 100%;
             height: 100%;
             border: none;
@@ -78,20 +78,20 @@
                 <li><a href="index.html">Profil</a></li>
                 <li><a href="bts-sio.html">BTS SIO</a></li>
                 <li><a href="entreprise.html">Entreprise</a></li>
-                <li><a href="e5.html" class="active">E5</a></li>
-                <li><a href="e6.html">E6</a></li>
+                <li><a href="e5.html">E5</a></li>
+                <li><a href="e6.html" class="active">E6</a></li>
                 <li><a href="veille.html">Veille Tech</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
 
         <div class="container">
-            <section id="e5">
-                <h2 data-number="03.">E5</h2>
-                <p class="subtitle" style="margin-bottom: 1.5rem;">Documents et rapports E5</p>
+            <section id="e6">
+                <h2 data-number="04.">E6</h2>
+                <p class="subtitle" style="margin-bottom: 1.5rem;">Documents et rapports E6</p>
 
-                <div class="e5-pdf-grid" id="e5-pdf-grid">
-                    <!-- Les PDF du dossier E5 sont chargés ici par le script -->
+                <div class="e6-pdf-grid" id="e6-pdf-grid">
+                    <!-- Les PDF du dossier E6 sont chargés ici par le script -->
                 </div>
             </section>
         </div>
@@ -103,43 +103,21 @@
     </div>
 
     <script>
-        const e5Pdfs = [
-            'AD.pdf',
-            'Administration et gestion du patrimoine informatique de Stadiumcompagny (GLPI).pdf',
-            'Administration et gestion du patrimoine informatique de Stadiumcompagny (OCS).pdf',
-            'apache.pdf',
-            'Fiche professionelle deploiement 1.pdf',
-            'Fiche professionelle deploiement 2.pdf',
-            'Fiche professionelle résolution imprimante 2.pdf',
-            'Gestion des utilisateurs dans l\'Active Directory.pdf',
-            'Implémentation d\'une solution de travail collaboratif (Zimbra).pdf',
-            'Livrable De Migration Vers Windows 11.pdf',
-            'Mission 1 Stadium Company 3.pdf',
-            'Mission 2 Stadium Company 2.pdf',
-            'NAT.pdf',
-            'Procédure OCS 4.pdf',
-            'Projet GLPI 4.pdf',
-            'Projet migration Teamsphone 2.pdf',
-            'RAPPORT DE PROJET Activation licence 2.pdf',
-            'rapport de projet conception réseau 1.pdf',
-            'Rapport de projet déploiement PC 2.pdf',
-            'rapport de projet heartbeat 1.pdf',
-            'Redondance et haute disponibilité des éléments d\'interconnexions de Stadiumcompagny (HSRP).pdf',
-            'Sécurisation des communications entre sites et en interne.pdf',
-            'Supervision de l\'infrastructure de Stadiumcompagny (Nagios XI).pdf',
-            'VPN Site to Site 3.pdf'
+        const e6Pdfs = [
+            'AD documentation technique.pdf',
+            'AD.pdf'
         ];
 
-        const grid = document.getElementById('e5-pdf-grid');
-        const baseUrl = 'E5/';
+        const grid = document.getElementById('e6-pdf-grid');
+        const baseUrl = 'E6/';
 
-        e5Pdfs.forEach(function(name) {
+        e6Pdfs.forEach(function(name) {
             const card = document.createElement('div');
-            card.className = 'e5-pdf-card';
+            card.className = 'e6-pdf-card';
             const title = name.replace(/\.pdf$/i, '');
             const src = baseUrl + encodeURIComponent(name);
             card.innerHTML = '<h3 title="' + title.replace(/"/g, '&quot;') + '">' + title + '</h3>' +
-                '<div class="e5-pdf-wrap"><iframe src="' + src + '#view=FitH" type="application/pdf" title="' + title.replace(/"/g, '&quot;') + '"></iframe></div>';
+                '<div class="e6-pdf-wrap"><iframe src="' + src + '#view=FitH" type="application/pdf" title="' + title.replace(/"/g, '&quot;') + '"></iframe></div>';
             grid.appendChild(card);
         });
     </script>

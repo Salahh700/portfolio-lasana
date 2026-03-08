@@ -1,0 +1,546 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #00d9ff;
+    --dark: #0a0e27;
+    --darker: #050814;
+    --text: #e0e0e0;
+    --text-dim: #8b8b8b;
+    --accent: #7c3aed;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--darker);
+    color: var(--text);
+    line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
+}
+
+#particles-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.15;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 50%;
+}
+
+.grid-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 217, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 217, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: 0;
+    animation: grid-move 20s linear infinite;
+}
+
+@keyframes grid-move {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+header {
+    background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+    padding: 2rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid var(--primary);
+    position: relative;
+}
+
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: left;
+    gap: 2rem;
+}
+
+.header-sub {
+    margin-bottom: 0.5rem;
+}
+
+.header-sub .sep {
+    color: var(--primary);
+    opacity: 0.5;
+    margin: 0 0.5rem;
+}
+
+.terminal-bar {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--primary);
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.terminal-bar::before {
+    content: "$ ";
+    color: var(--primary);
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 0.2rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: var(--text-dim);
+    font-size: 1.1rem;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0, 217, 255, 0.1);
+    border: 1px solid var(--primary);
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    margin-top: 0;
+    font-size: 0.85rem;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--primary);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.cv-download {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.cv-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--primary);
+    color: var(--darker);
+    padding: 0.7rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    border: 2px solid var(--primary);
+}
+
+.cv-button:hover {
+    background: transparent;
+    color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 217, 255, 0.3);
+}
+
+.cv-button-secondary {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--accent);
+}
+
+.cv-button-secondary:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.card .cv-download {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+nav {
+    background: var(--dark);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+}
+
+nav ul {
+    max-width: 1200px;
+    margin: 0 auto;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    transition: all 0.3s;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+nav a::before {
+    content: "▹";
+    color: var(--primary);
+    font-size: 1.2rem;
+    transition: transform 0.3s;
+}
+
+nav a:hover {
+    color: var(--primary);
+}
+
+nav a:hover::before {
+    transform: translateX(3px);
+}
+
+nav a.active {
+    color: var(--primary);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+section {
+    margin-bottom: 4rem;
+}
+
+section h2 {
+    color: var(--primary);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+section h2::before {
+    content: attr(data-number);
+    font-family: 'Fira Code', monospace;
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.card {
+    background: rgba(10, 14, 39, 0.8);
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s;
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--primary);
+    transition: height 0.3s;
+}
+
+.card:hover {
+    border-color: var(--primary);
+    transform: translateX(5px);
+}
+
+.card:hover::before {
+    height: 100%;
+}
+
+.card h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-family: 'Fira Code', monospace;
+}
+
+.card h4 {
+    color: var(--accent);
+    margin: 1.5rem 0 0.8rem 0;
+    font-size: 1.2rem;
+}
+
+.card p {
+    color: var(--text);
+    margin-bottom: 1rem;
+}
+
+.project-image {
+    width: 100%;
+    max-width: 600px;
+    margin: 1.5rem auto;
+    display: block;
+    border: 1px solid rgba(0, 217, 255, 0.3);
+    border-radius: 8px;
+}
+
+code {
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--primary);
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+}
+
+.tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+}
+
+.tag {
+    background: rgba(0, 217, 255, 0.1);
+    border: 1px solid var(--primary);
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--primary);
+    font-family: 'Fira Code', monospace;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-card {
+    background: rgba(10, 14, 39, 0.8);
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+.skill-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.1);
+}
+
+.skill-card h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.skill-icon {
+    font-size: 1.5rem;
+}
+
+.skill-card ul {
+    list-style: none;
+}
+
+.skill-card li {
+    padding: 0.3rem 0;
+    color: var(--text);
+    font-size: 0.95rem;
+}
+
+.skill-card li::before {
+    content: "→";
+    color: var(--primary);
+    margin-right: 0.5rem;
+}
+
+.info-box {
+    background: rgba(0, 217, 255, 0.05);
+    border-left: 3px solid var(--primary);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+}
+
+.info-box strong {
+    color: var(--primary);
+}
+
+.data-table {
+    width: 100%;
+    margin: 1.5rem 0;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    padding: 0.8rem;
+    text-align: left;
+}
+
+.data-table th {
+    background: rgba(0, 217, 255, 0.1);
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.data-table tr:hover {
+    background: rgba(0, 217, 255, 0.05);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.contact-item {
+    background: rgba(10, 14, 39, 0.8);
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+.contact-item:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+}
+
+.contact-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.contact-item h3 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-family: 'Fira Code', monospace;
+}
+
+footer {
+    background: var(--dark);
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid rgba(0, 217, 255, 0.2);
+    color: var(--text-dim);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .header-main {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .header-sub .sep {
+        display: none;
+    }
+
+    .header-sub .subtitle {
+        display: block;
+        margin-bottom: 0.2rem;
+    }
+
+    .status-badge {
+        margin-top: 0.5rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    nav ul {
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+
+    nav a::before {
+        display: none;
+    }
+
+    .container {
+        padding: 2rem 1rem;
+    }
+
+    section h2::before {
+        font-size: 1.2rem;
+    }
+
+    .project-image {
+        max-width: 100%;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--darker);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lasana Diarra - E5 | Portfolio SISR</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .e5-pdf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+        .e5-pdf-card {
+            background: rgba(10, 14, 39, 0.8);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+        .e5-pdf-card:hover {
+            border-color: var(--primary);
+        }
+        .e5-pdf-card h3 {
+            color: var(--primary);
+            font-size: 0.95rem;
+            font-family: 'Fira Code', monospace;
+            padding: 0.75rem 1rem;
+            margin: 0;
+            background: rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .e5-pdf-wrap {
+            position: relative;
+            width: 100%;
+            height: 420px;
+            background: #1a1d2e;
+        }
+        .e5-pdf-wrap iframe,
+        .e5-pdf-wrap embed {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <div id="particles-bg"></div>
+
+    <div class="content-wrapper">
+        <header>
+            <div class="terminal-bar">whoami && pwd</div>
+            <div class="header-main">
+                <div class="header-text">
+                    <h1>Lasana Diarra</h1>
+                    <div class="header-sub">
+                        <span class="subtitle">Technicien Infrastructure & Réseaux</span>
+                        <span class="sep">•</span>
+                        <span class="subtitle">BTS SIO SISR • CGI • IRIS Paris</span>
+                    </div>
+                    <div class="status-badge">
+                        <span class="status-dot"></span>
+                        Tech
+                    </div>
+                </div>
+                <div class="cv-download">
+                    <a href="cv-lasana-diarra.pdf" class="cv-button" download>📄 Télécharger mon CV</a>
+                    <a href="1.webp" class="cv-button cv-button-secondary" download>📊 Tableau de Compétences</a>
+                </div>
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Profil</a></li>
+                <li><a href="bts-sio.html">BTS SIO</a></li>
+                <li><a href="entreprise.html">Entreprise</a></li>
+                <li><a href="e5.html" class="active">E5</a></li>
+                <li><a href="veille.html">Veille Tech</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <section id="e5">
+                <h2 data-number="03.">E5</h2>
+                <p class="subtitle" style="margin-bottom: 1.5rem;">Documents et rapports E5</p>
+
+                <div class="e5-pdf-grid" id="e5-pdf-grid">
+                    <!-- Les PDF du dossier E5 sont chargés ici par le script -->
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>© 2025 Lasana Diarra - Portfolio BTS SIO SISR</p>
+            <p style="margin-top: 0.5rem; opacity: 0.6;">$ exit</p>
+        </footer>
+    </div>
+
+    <script>
+        const e5Pdfs = [
+            'AD.pdf',
+            'Administration et gestion du patrimoine informatique de Stadiumcompagny (GLPI).pdf',
+            'Administration et gestion du patrimoine informatique de Stadiumcompagny (OCS).pdf',
+            'apache.pdf',
+            'Fiche professionelle deploiement 2.pdf',
+            'Fiche professionelle résolution imprimante 2.pdf',
+            'Implémentation d\'une solution de travail collaboratif (Zimbra).pdf',
+            'Mission 1 Stadium Company 3.pdf',
+            'Mission 2 Stadium Company 2.pdf',
+            'NAT.pdf',
+            'Procédure OCS 4.pdf',
+            'Projet GLPI 4.pdf',
+            'Projet migration Teamsphone 2.pdf',
+            'RAPPORT DE PROJET Activation licence 2.pdf',
+            'rapport de projet conception réseau 1.pdf',
+            'Rapport de projet déploiement PC 2.pdf',
+            'rapport de projet heartbeat 1.pdf',
+            'Redondance et haute disponibilité des éléments d\'interconnexions de Stadiumcompagny (HSRP).pdf',
+            'Sécurisation des communications entre sites et en interne.pdf',
+            'Supervision de l\'infrastructure de Stadiumcompagny (Nagios XI).pdf',
+            'VPN Site to Site 3.pdf'
+        ];
+
+        const grid = document.getElementById('e5-pdf-grid');
+        const baseUrl = 'E5/';
+
+        e5Pdfs.forEach(function(name) {
+            const card = document.createElement('div');
+            card.className = 'e5-pdf-card';
+            const title = name.replace(/\.pdf$/i, '');
+            const src = baseUrl + encodeURIComponent(name);
+            card.innerHTML = '<h3 title="' + title.replace(/"/g, '&quot;') + '">' + title + '</h3>' +
+                '<div class="e5-pdf-wrap"><iframe src="' + src + '#view=FitH" type="application/pdf" title="' + title.replace(/"/g, '&quot;') + '"></iframe></div>';
+            grid.appendChild(card);
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

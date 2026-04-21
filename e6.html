@@ -6,43 +6,105 @@
     <title>Lasana Diarra - E6 | Portfolio SISR</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .e6-pdf-grid {
+        .e6-project-block {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 1.5rem;
-        }
-        .e6-pdf-card {
-            background: rgba(10, 14, 39, 0.8);
-            border: 1px solid rgba(0, 217, 255, 0.2);
+            grid-template-columns: 1fr minmax(240px, 34%);
+            gap: 2rem;
+            align-items: start;
+            margin-bottom: 2.5rem;
+            padding: 1.35rem 1.5rem;
+            background: rgba(10, 14, 39, 0.65);
+            border: 1px solid rgba(0, 217, 255, 0.18);
             border-radius: 8px;
-            overflow: hidden;
-            transition: border-color 0.3s;
         }
-        .e6-pdf-card:hover {
-            border-color: var(--primary);
-        }
-        .e6-pdf-card h3 {
+        .e6-project-title {
             color: var(--primary);
-            font-size: 0.95rem;
-            font-family: 'Fira Code', monospace;
-            padding: 0.75rem 1rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 0 0 1rem 0;
+            line-height: 1.35;
+        }
+        .e6-project-text p {
+            margin: 0 0 0.85rem 0;
+            line-height: 1.55;
+            color: rgba(230, 235, 255, 0.88);
+        }
+        .e6-project-text p:last-of-type {
+            margin-bottom: 0.5rem;
+        }
+        .e6-project-list {
+            margin: 0.35rem 0 0 0;
+            padding-left: 1.25rem;
+            line-height: 1.5;
+            color: rgba(230, 235, 255, 0.88);
+        }
+        .e6-project-list li {
+            margin-bottom: 0.35rem;
+        }
+        .e6-project-aside {
+            position: sticky;
+            top: 1rem;
+        }
+        .e6-project-aside-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: rgba(0, 217, 255, 0.75);
+            margin: 0 0 0.65rem 0;
+        }
+        .e6-project-aside .e6-pdf-list {
+            margin-bottom: 0;
+        }
+        @media (max-width: 900px) {
+            .e6-project-block {
+                grid-template-columns: 1fr;
+            }
+            .e6-project-aside {
+                position: static;
+            }
+        }
+        .e6-section-heading {
+            color: var(--primary);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 2rem 0 0.75rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+        }
+        .e6-pdf-list {
+            list-style: none;
+            margin: 0 0 1.5rem 0;
+            padding: 0;
+        }
+        .e6-pdf-list li {
             margin: 0;
-            background: rgba(0, 0, 0, 0.2);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            padding: 0;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.12);
         }
-        .e6-pdf-wrap {
+        .e6-pdf-list li:last-child {
+            border-bottom: none;
+        }
+        .e6-pdf-list a {
+            display: block;
+            padding: 0.65rem 0.5rem 0.65rem 1.75rem;
             position: relative;
-            width: 100%;
-            height: 420px;
-            background: #1a1d2e;
+            color: rgba(230, 235, 255, 0.92);
+            text-decoration: none;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            transition: color 0.2s, background 0.2s;
         }
-        .e6-pdf-wrap iframe,
-        .e6-pdf-wrap embed {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .e6-pdf-list a::before {
+            content: '→';
+            position: absolute;
+            left: 0.25rem;
+            color: var(--primary);
+            opacity: 0.7;
+        }
+        .e6-pdf-list a:hover {
+            color: var(--primary);
+            background: rgba(0, 217, 255, 0.06);
         }
     </style>
 </head>
@@ -67,8 +129,8 @@
                     </div>
                 </div>
                 <div class="cv-download">
-                    <a href="cv-lasana-diarra.pdf" class="cv-button" download>📄 Télécharger mon CV</a>
-                    <a href="1.webp" class="cv-button cv-button-secondary" download>📊 Tableau de Compétences</a>
+                    <a href="CV_2026-04-16_Lasana_Diarra.pdf" class="cv-button" download>📄 Télécharger mon CV</a>
+                    <a href="Tableau de compétence E4 (1).pdf" class="cv-button cv-button-secondary" download>📊 Tableau de Compétences</a>
                 </div>
             </div>
         </header>
@@ -80,6 +142,7 @@
                 <li><a href="entreprise.html">Entreprise</a></li>
                 <li><a href="e5.html">E5</a></li>
                 <li><a href="e6.html" class="active">E6</a></li>
+                <li><a href="Tableau de compétence E4 (1).pdf" target="_blank" rel="noopener noreferrer">Tableau de compétences</a></li>
                 <li><a href="veille.html">Veille Tech</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -90,9 +153,51 @@
                 <h2 data-number="04.">E6</h2>
                 <p class="subtitle" style="margin-bottom: 1.5rem;">Documents et rapports E6</p>
 
-                <div class="e6-pdf-grid" id="e6-pdf-grid">
-                    <!-- Les PDF du dossier E6 sont chargés ici par le script -->
+                <div class="e6-project-block">
+                    <div class="e6-project-text">
+                        <h3 class="e6-project-title">Projet 1 : Création et intégration d'un nouveau groupe d'utilisateur dans l'Active Directory</h3>
+                        <p>L'Active Directory est un annuaire LDAP (Lightweight Directory Access Protocol) pour les systèmes d'exploitation Windows.</p>
+                        <p>Cet annuaire contient différents objets, de différents types (utilisateurs, ordinateurs, etc.).</p>
+                        <p>L'objectif est de centraliser deux fonctionnalités essentielles : l'identification et l'authentification au sein du système d'information.</p>
+                        <p>Les intérêts d'un annuaire sont :</p>
+                        <ul class="e6-project-list">
+                            <li>Administration centralisée et simplifiée</li>
+                            <li>Unifier l'authentification</li>
+                            <li>Identifier les objets sur le réseau</li>
+                            <li>Référencer les utilisateurs et ordinateurs</li>
+                        </ul>
+                    </div>
+                    <aside class="e6-project-aside" aria-label="Documents du projet">
+                        <p class="e6-project-aside-title">Documents</p>
+                        <ul class="e6-pdf-list">
+                            <li><a href="E6/Active%20Directory%202.pdf" target="_blank" rel="noopener noreferrer">Active Directory 2</a></li>
+                            <li><a href="E6/Rp1%20Lasana-3-6.pdf" target="_blank" rel="noopener noreferrer">RP1 Lasana 3-6</a></li>
+                        </ul>
+                    </aside>
                 </div>
+
+                <div class="e6-project-block">
+                    <div class="e6-project-text">
+                        <h3 class="e6-project-title">Projet 2 : Intégration d'un nouveau groupe d'utilisateur dans l'outil de gestion de ticket (GLPI)</h3>
+                        <p>GLPI et OCS Inventory sont deux logiciels open source utilisés pour la gestion de parc informatique et la surveillance des actifs informatiques.</p>
+                        <p>GLPI (Gestionnaire Libre de Parc Informatique) est une application web qui permet la gestion des actifs informatiques, la gestion des incidents et des demandes d'assistance, la gestion des contrats et des licences logicielles, la gestion des tâches et des projets, etc.</p>
+                        <p>OCS Inventory (Open Computer and Software Inventory) est une application de gestion d'inventaire informatique qui permet de collecter des informations sur les ordinateurs, les périphériques et les logiciels installés sur le réseau.</p>
+                        <p>Ces deux outils sont souvent utilisés ensemble pour fournir une solution complète de gestion de parc informatique. OCS Inventory collecte les données d'inventaire et les remonte à GLPI pour une gestion centralisée des actifs informatiques.</p>
+                    </div>
+                    <aside class="e6-project-aside" aria-label="Documents du projet">
+                        <p class="e6-project-aside-title">Documents</p>
+                        <ul class="e6-pdf-list">
+                            <li><a href="E6/RP2%20Lass-1-6-3-6.pdf" target="_blank" rel="noopener noreferrer">RP2 Lasana</a></li>
+                            <li><a href="E6/OCS-GLPI%201%201.pdf" target="_blank" rel="noopener noreferrer">OCS GLPI</a></li>
+                        </ul>
+                    </aside>
+                </div>
+
+                <p class="e6-section-heading">Réalisations en milieu professionnel en cours de première année</p>
+                <ul class="e6-pdf-list" id="e6-pro-1-links"></ul>
+
+                <p class="e6-section-heading">Réalisations en milieu professionnel en cours de seconde année</p>
+                <ul class="e6-pdf-list" id="e6-pro-2-links"></ul>
             </section>
         </div>
 
@@ -103,23 +208,39 @@
     </div>
 
     <script>
-        const e6Pdfs = [
-            'AD documentation technique.pdf',
-            'AD.pdf'
+        function encodePath(relPath) {
+            return relPath.split('/').map(function(part) {
+                return encodeURIComponent(part);
+            }).join('/');
+        }
+
+        function fillPdfList(ul, paths) {
+            paths.forEach(function(relPath) {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = encodePath(relPath);
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                const base = relPath.split('/').pop();
+                a.textContent = base.replace(/\.pdf$/i, '');
+                li.appendChild(a);
+                ul.appendChild(li);
+            });
+        }
+
+        const e6ProFirstYear = [
+            "E6/1ere année/Livrable De Migration Vers Windows 11 (1) (2) 1.pdf",
+            "E6/1ere année/RAPPORT DE PROJET Activation licence 2 1.pdf"
         ];
 
-        const grid = document.getElementById('e6-pdf-grid');
-        const baseUrl = 'E6/';
+        const e6ProSecondYear = [
+            "E6/2eme année/Fiche professionelle deploiement 1 (1) (2) 1.pdf",
+            "E6/2eme année/Fiche professionelle résolution imprimante 2 (1) 1.pdf",
+            "E6/2eme année/Projet migration Teamsphone 2 1.pdf"
+        ];
 
-        e6Pdfs.forEach(function(name) {
-            const card = document.createElement('div');
-            card.className = 'e6-pdf-card';
-            const title = name.replace(/\.pdf$/i, '');
-            const src = baseUrl + encodeURIComponent(name);
-            card.innerHTML = '<h3 title="' + title.replace(/"/g, '&quot;') + '">' + title + '</h3>' +
-                '<div class="e6-pdf-wrap"><iframe src="' + src + '#view=FitH" type="application/pdf" title="' + title.replace(/"/g, '&quot;') + '"></iframe></div>';
-            grid.appendChild(card);
-        });
+        fillPdfList(document.getElementById('e6-pro-1-links'), e6ProFirstYear);
+        fillPdfList(document.getElementById('e6-pro-2-links'), e6ProSecondYear);
     </script>
     <script src="script.js"></script>
 </body>

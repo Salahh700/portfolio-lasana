@@ -6,43 +6,49 @@
     <title>Lasana Diarra - E5 | Portfolio SISR</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .e5-pdf-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 1.5rem;
-        }
-        .e5-pdf-card {
-            background: rgba(10, 14, 39, 0.8);
-            border: 1px solid rgba(0, 217, 255, 0.2);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: border-color 0.3s;
-        }
-        .e5-pdf-card:hover {
-            border-color: var(--primary);
-        }
-        .e5-pdf-card h3 {
+        .e5-training-title {
             color: var(--primary);
-            font-size: 0.95rem;
-            font-family: 'Fira Code', monospace;
-            padding: 0.75rem 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin: 0 0 1rem 0;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.25);
+        }
+        .e5-pdf-list {
+            list-style: none;
+            margin: 0 0 1.5rem 0;
+            padding: 0;
+        }
+        .e5-pdf-list li {
             margin: 0;
-            background: rgba(0, 0, 0, 0.2);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            padding: 0;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.12);
         }
-        .e5-pdf-wrap {
+        .e5-pdf-list li:last-child {
+            border-bottom: none;
+        }
+        .e5-pdf-list a {
+            display: block;
+            padding: 0.65rem 0.5rem 0.65rem 1.75rem;
             position: relative;
-            width: 100%;
-            height: 420px;
-            background: #1a1d2e;
+            color: rgba(230, 235, 255, 0.92);
+            text-decoration: none;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            transition: color 0.2s, background 0.2s;
         }
-        .e5-pdf-wrap iframe,
-        .e5-pdf-wrap embed {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .e5-pdf-list a::before {
+            content: '→';
+            position: absolute;
+            left: 0.25rem;
+            color: var(--primary);
+            opacity: 0.7;
+        }
+        .e5-pdf-list a:hover {
+            color: var(--primary);
+            background: rgba(0, 217, 255, 0.06);
         }
     </style>
 </head>
@@ -67,8 +73,8 @@
                     </div>
                 </div>
                 <div class="cv-download">
-                    <a href="cv-lasana-diarra.pdf" class="cv-button" download>📄 Télécharger mon CV</a>
-                    <a href="1.webp" class="cv-button cv-button-secondary" download>📊 Tableau de Compétences</a>
+                    <a href="CV_2026-04-16_Lasana_Diarra.pdf" class="cv-button" download>📄 Télécharger mon CV</a>
+                    <a href="Tableau de compétence E4 (1).pdf" class="cv-button cv-button-secondary" download>📊 Tableau de Compétences</a>
                 </div>
             </div>
         </header>
@@ -80,6 +86,7 @@
                 <li><a href="entreprise.html">Entreprise</a></li>
                 <li><a href="e5.html" class="active">E5</a></li>
                 <li><a href="e6.html">E6</a></li>
+                <li><a href="Tableau de compétence E4 (1).pdf" target="_blank" rel="noopener noreferrer">Tableau de compétences</a></li>
                 <li><a href="veille.html">Veille Tech</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -87,12 +94,11 @@
 
         <div class="container">
             <section id="e5">
+                <p class="e5-training-title">Projets réalisés en cours de formation</p>
                 <h2 data-number="03.">E5</h2>
                 <p class="subtitle" style="margin-bottom: 1.5rem;">Documents et rapports E5</p>
 
-                <div class="e5-pdf-grid" id="e5-pdf-grid">
-                    <!-- Les PDF du dossier E5 sont chargés ici par le script -->
-                </div>
+                <ul class="e5-pdf-list" id="e5-formation-links"></ul>
             </section>
         </div>
 
@@ -103,45 +109,40 @@
     </div>
 
     <script>
-        const e5Pdfs = [
-            'AD.pdf',
-            'Administration et gestion du patrimoine informatique de Stadiumcompagny (GLPI).pdf',
-            'Administration et gestion du patrimoine informatique de Stadiumcompagny (OCS).pdf',
-            'apache.pdf',
-            'Fiche professionelle deploiement 1.pdf',
-            'Fiche professionelle deploiement 2.pdf',
-            'Fiche professionelle résolution imprimante 2.pdf',
-            'Gestion des utilisateurs dans l\u2019Active Directory.pdf',
-            'Implémentation d\'une solution de travail collaboratif (Zimbra).pdf',
-            'Livrable De Migration Vers Windows 11.pdf',
-            'Mission 1 Stadium Company 3.pdf',
-            'Mission 2 Stadium Company 2.pdf',
-            'NAT.pdf',
-            'Procédure OCS 4.pdf',
-            'Projet GLPI 4.pdf',
-            'Projet migration Teamsphone 2.pdf',
-            'RAPPORT DE PROJET Activation licence 2.pdf',
-            'rapport de projet conception réseau 1.pdf',
-            'Rapport de projet déploiement PC 2.pdf',
-            'rapport de projet heartbeat 1.pdf',
-            'Redondance et haute disponibilité des éléments d\'interconnexions de Stadiumcompagny (HSRP).pdf',
-            'Sécurisation des communications entre sites et en interne.pdf',
-            'Supervision de l\'infrastructure de Stadiumcompagny (Nagios XI).pdf',
-            'VPN Site to Site 3.pdf'
+        function encodePath(relPath) {
+            return relPath.split('/').map(function(part) {
+                return encodeURIComponent(part);
+            }).join('/');
+        }
+
+        function fillPdfList(ul, paths) {
+            paths.forEach(function(relPath) {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = encodePath(relPath);
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                const base = relPath.split('/').pop();
+                a.textContent = base.replace(/\.pdf$/i, '');
+                li.appendChild(a);
+                ul.appendChild(li);
+            });
+        }
+
+        const e5FormationPdfs = [
+            "E5/1-installation pfsense.pdf",
+            "E5/Active Directory 1.pdf",
+            "E5/Déploiement d'une solution d'accès sans fil des utilisateurs mobiles de Stadiumcompagny (Wifi).pdf",
+            "E5/Implémentation d'une solution de travail collaboratif (Zimbra) (2) 1.pdf",
+            "E5/OCS-GLPI 1.pdf",
+            "E5/Optimiser le réferencement du site web avec SEO (Search Engin Optimisation).pdf",
+            "E5/Redondance et haute disponibilité des éléments d'interconnexions de Stadiumcompagny (HSRP) (1) 1.pdf",
+            "E5/Restructuration de l'infrastructure Stadiumcompagny (VLAN^J Routage inter-vlan^J Routage Statique).pdf",
+            "E5/Supervision de l'infrastructure de Stadiumcompagny (Nagios XI) (1).pdf",
+            "E5/Sécurisation des communications entre sites et en interne (1) 1.pdf"
         ];
 
-        const grid = document.getElementById('e5-pdf-grid');
-        const baseUrl = 'E5/';
-
-        e5Pdfs.forEach(function(name) {
-            const card = document.createElement('div');
-            card.className = 'e5-pdf-card';
-            const title = name.replace(/\.pdf$/i, '');
-            const src = baseUrl + encodeURIComponent(name);
-            card.innerHTML = '<h3 title="' + title.replace(/"/g, '&quot;') + '">' + title + '</h3>' +
-                '<div class="e5-pdf-wrap"><iframe src="' + src + '#view=FitH" type="application/pdf" title="' + title.replace(/"/g, '&quot;') + '"></iframe></div>';
-            grid.appendChild(card);
-        });
+        fillPdfList(document.getElementById('e5-formation-links'), e5FormationPdfs);
     </script>
     <script src="script.js"></script>
 </body>

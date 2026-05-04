@@ -63,14 +63,6 @@
                 position: static;
             }
         }
-        .e6-section-heading {
-            color: var(--primary);
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin: 2rem 0 0.75rem 0;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
-        }
         .e6-pdf-list {
             list-style: none;
             margin: 0 0 1.5rem 0;
@@ -130,7 +122,7 @@
                 </div>
                 <div class="cv-download">
                     <a href="CV_2026-04-16_Lasana_Diarra.pdf" class="cv-button" download>📄 Télécharger mon CV</a>
-                    <a href="Tableau de compétence E4 (1).pdf" class="cv-button cv-button-secondary" download>📊 Tableau de Compétences</a>
+                    <a href="Tableau de compétence E4 (1) 1.pdf" class="cv-button cv-button-secondary" download>📊 Tableau de Compétences</a>
                 </div>
             </div>
         </header>
@@ -142,7 +134,7 @@
                 <li><a href="entreprise.html">Entreprise</a></li>
                 <li><a href="e5.html">E5</a></li>
                 <li><a href="e6.html" class="active">E6</a></li>
-                <li><a href="Tableau de compétence E4 (1).pdf" target="_blank" rel="noopener noreferrer">Tableau de compétences</a></li>
+                <li><a href="Tableau de compétence E4 (1) 1.pdf" target="_blank" rel="noopener noreferrer">Tableau de compétences</a></li>
                 <li><a href="veille.html">Veille Tech</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -151,7 +143,8 @@
         <div class="container">
             <section id="e6">
                 <h2 data-number="04.">E6</h2>
-                <p class="subtitle" style="margin-bottom: 1.5rem;">Documents et rapports E6</p>
+                <p class="subtitle" style="margin-bottom: 0.75rem;">Missions longues en entreprise</p>
+                <p style="margin-bottom: 1.5rem; line-height: 1.55; color: rgba(230, 235, 255, 0.88);">Les <strong>réalisations en milieu professionnel</strong> (fiches et livrables d’alternance par année) sont regroupées sur la page <a href="e5.html" style="color: var(--primary);">E5</a>.</p>
 
                 <div class="e6-project-block">
                     <div class="e6-project-text">
@@ -192,12 +185,6 @@
                         </ul>
                     </aside>
                 </div>
-
-                <p class="e6-section-heading">Réalisations en milieu professionnel en cours de première année</p>
-                <ul class="e6-pdf-list" id="e6-pro-1-links"></ul>
-
-                <p class="e6-section-heading">Réalisations en milieu professionnel en cours de seconde année</p>
-                <ul class="e6-pdf-list" id="e6-pro-2-links"></ul>
             </section>
         </div>
 
@@ -207,41 +194,6 @@
         </footer>
     </div>
 
-    <script>
-        function encodePath(relPath) {
-            return relPath.split('/').map(function(part) {
-                return encodeURIComponent(part);
-            }).join('/');
-        }
-
-        function fillPdfList(ul, paths) {
-            paths.forEach(function(relPath) {
-                const li = document.createElement('li');
-                const a = document.createElement('a');
-                a.href = encodePath(relPath);
-                a.target = '_blank';
-                a.rel = 'noopener noreferrer';
-                const base = relPath.split('/').pop();
-                a.textContent = base.replace(/\.pdf$/i, '');
-                li.appendChild(a);
-                ul.appendChild(li);
-            });
-        }
-
-        const e6ProFirstYear = [
-            "E6/1ere année/Livrable De Migration Vers Windows 11 (1) (2) 1.pdf",
-            "E6/1ere année/RAPPORT DE PROJET Activation licence 2 1.pdf"
-        ];
-
-        const e6ProSecondYear = [
-            "E6/2eme année/Fiche professionelle deploiement 1 (1) (2) 1.pdf",
-            "E6/2eme année/Fiche professionelle résolution imprimante 2 (1) 1.pdf",
-            "E6/2eme année/Projet migration Teamsphone 2 1.pdf"
-        ];
-
-        fillPdfList(document.getElementById('e6-pro-1-links'), e6ProFirstYear);
-        fillPdfList(document.getElementById('e6-pro-2-links'), e6ProSecondYear);
-    </script>
     <script src="script.js"></script>
 </body>
 </html>
